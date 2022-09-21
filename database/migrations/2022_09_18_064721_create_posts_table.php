@@ -26,12 +26,12 @@ return new class extends Migration {
             $table->timestamps();
 
             // IDx
-            $table->index('author_id', 'post_author_idx');
-            $table->index('theme_id', 'post_theme_idx');
+            $table->index('author_id');
+            $table->index('theme_id');
 
             //FK
-            $table->foreign('author_id', 'post_author_fk')->on('authors')->references('id')->cascadeOnUpdate()->nullOnDelete();
-            $table->foreign('theme_id', 'post_theme_fk')->on('themes')->references('id')->cascadeOnUpdate()->nullOnDelete();
+            // $table->foreign('author_id', 'post_author_fk')->on('authors')->references('id')->cascadeOnUpdate()->nullOnDelete();
+            // $table->foreign('theme_id', 'post_theme_fk')->on('themes')->references('id')->cascadeOnUpdate()->nullOnDelete();
         });
     }
 

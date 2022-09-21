@@ -7,6 +7,8 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration {
+    private const TABLE = 'comments';
+
     /**
      * Run the migrations.
      *
@@ -14,7 +16,7 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('comments', static function (Blueprint $table) {
+        Schema::create(self::TABLE, static function (Blueprint $table) {
             $table->id();
             $table->string('title', 70);
             $table->text('content');
@@ -24,12 +26,12 @@ return new class extends Migration {
             $table->timestamps();
 
             // IDx
-            $table->index('author_id', 'comment_author_idx');
-            $table->index('post_id', 'comment_post_idx');
+            $table->index('author_id');
+            $table->index('post_id');
 
             //FK
-            $table->foreign('author_id', 'comment_author_fk')->on('authors')->references('id')->cascadeOnUpdate()->nullOnDelete();
-            $table->foreign('post_id', 'comment_post_fk')->on('posts')->references('id')->cascadeOnUpdate()->nullOnDelete();
+            // $table->foreign('author_id','comment_author_fk')->on('authors')->references('id')->cascadeOnUpdate()->nullOnDelete();
+            // $table->foreign('post_id','comment_post_fk')->on('posts')->references('id')->cascadeOnUpdate()->nullOnDelete();
         });
     }
 
@@ -40,6 +42,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('comments');
+        Schema::dropIfExists(self::TABLE);
     }
 };

@@ -7,7 +7,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration {
-    private const TABLE = 'authors';
+    private const TABLE = 'roles';
 
     /**
      * Run the migrations.
@@ -18,20 +18,8 @@ return new class extends Migration {
     {
         Schema::create(self::TABLE, static function (Blueprint $table) {
             $table->id();
-            $table->string('avatar', 30);
-            $table->string('name', 30);
-            $table->string('login', 20);
-            $table->string('email', 30);
-            $table->string('password', 255);
-            $table->unsignedBigInteger('role_id');
-            $table->softDeletes();
+            $table->string('title', 15);
             $table->timestamps();
-
-            // IDx
-            $table->index('role_id');
-
-            // FK
-            // $table->foreign('role_id')->on('roles')->references('id')->cascadeOnUpdate()->cascadeOnDelete();
         });
     }
 
