@@ -18,8 +18,12 @@ return new class extends Migration {
     {
         Schema::create(self::TABLE, static function (Blueprint $table) {
             $table->id();
+
             $table->string('title', 100);
+            $table->string('slug', 100)->unique();
+
             $table->softDeletes();
+
             $table->timestamps();
         });
     }

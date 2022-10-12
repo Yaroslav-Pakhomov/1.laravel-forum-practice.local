@@ -18,10 +18,15 @@ return new class extends Migration {
     {
         Schema::create(self::TABLE, static function (Blueprint $table) {
             $table->id();
+
             $table->string('title', 255);
+            $table->string('slug', 100)->unique();
+
             $table->unsignedBigInteger('author_id')->nullable();
             $table->unsignedBigInteger('section_id')->nullable();
+
             $table->softDeletes();
+
             $table->timestamps();
 
             // IDx

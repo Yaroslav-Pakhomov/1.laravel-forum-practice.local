@@ -18,13 +18,16 @@ return new class extends Migration {
     {
         Schema::create(self::TABLE, static function (Blueprint $table) {
             $table->id();
+
             $table->string('avatar', 30);
             $table->string('name', 30);
-            $table->string('login', 20);
-            $table->string('email', 30);
+            $table->string('login', 30)->unique();
+            $table->string('email', 30)->unique();
             $table->string('password', 255);
-            $table->unsignedBigInteger('role_id');
+            $table->unsignedBigInteger('role_id')->nullable();
+
             $table->softDeletes();
+
             $table->timestamps();
 
             // IDx
