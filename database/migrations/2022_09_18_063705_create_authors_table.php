@@ -19,10 +19,12 @@ return new class extends Migration {
         Schema::create(self::TABLE, static function (Blueprint $table) {
             $table->id();
 
+
             $table->string('avatar', 100);
             $table->string('name', 30);
             $table->string('login', 30)->unique();
             $table->string('email', 50)->unique();
+
             $table->string('password', 255);
             $table->unsignedBigInteger('role_id')->nullable();
 
